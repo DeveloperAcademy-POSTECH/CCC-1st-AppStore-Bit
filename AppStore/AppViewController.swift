@@ -12,5 +12,12 @@ class AppViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureView()
+    }
+    
+    private func configureView() {
+        guard let view = self.view else { return }
+
+        view.backgroundColor = .systemBackground
     }
 }
