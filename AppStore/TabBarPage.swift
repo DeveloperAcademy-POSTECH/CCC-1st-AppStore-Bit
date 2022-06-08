@@ -50,15 +50,15 @@ enum TabBarPage {
     func pageImage() -> UIImage? {
         switch self {
         case .today:
-            return UIImage.init(systemName: "doc.text.image")
+            return UIImage(systemName: "doc.text.image")
         case .game:
-            return UIImage.init(systemName: "")
+            return UIImage(named: "tabicon-game")
         case .app:
-            return UIImage.init(systemName: "square.stack.3d.up.fill")
+            return UIImage(systemName: "square.stack.3d.up.fill")
         case .arcade:
-            return UIImage.init(systemName: "")
+            return UIImage(named: "tabicon-arcade")
         case .search:
-            return UIImage.init(systemName: "magnifyingglass")
+            return UIImage(systemName: "magnifyingglass")
         }
     }
     
@@ -84,7 +84,7 @@ enum TabBarPage {
         case .game:
             return ViewController()
         case .app:
-            return ViewController()
+            return AppViewController()
         case .arcade:
             return ViewController()
         case .search:

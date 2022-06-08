@@ -12,18 +12,28 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        configureTabBar()
+        configureViewControllers()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureTabBar() {
+        tabBar.backgroundColor = .darkGray
+        tabBar.tintColor = .systemBlue
+        tabBar.unselectedItemTintColor = .systemGray
     }
-    */
-
+    
+    private func getNavigationController(_ page: TabBarPage) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: page.pageViewController())
+        navController.tabBarItem = UITabBarItem(title: page.pageTitleValue(),
+                                                image: page.pageImage(),
+                                                tag: page.pageOrderNumber())
+        return navController
+    }
+    
+    private func configureViewControllers() {
+        let pages: [TabBarPage] = [.today, .game, .app, .arcade, .search]
+            .sorted(by: { $0.pageOrderNumber() < $1.pageOrderNumber() })
+        let controllers: [UINavigationController] = pages.map({ getNavigationController($0) })
+        self.viewControllers = controllers
+    }
 }
