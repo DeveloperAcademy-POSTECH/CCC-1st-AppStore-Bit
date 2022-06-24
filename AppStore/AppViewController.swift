@@ -8,19 +8,9 @@
 import UIKit
 
 class AppViewController: UIViewController {
-
-    lazy var profileButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
-        
-        let pointSize: CGFloat = 30
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: pointSize)
-        var config = UIButton.Configuration.plain()
-        if #available(iOS 15.0, *) {
-            config.preferredSymbolConfigurationForImage = imageConfig
-            button.configuration = config
-        }
-        return button
+    lazy var profileImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "person.crop.circle"))
+        return imageView
     }()
     
     override func viewDidLoad() {
@@ -48,17 +38,18 @@ class AppViewController: UIViewController {
     private func configureSubViews() {
         guard let view = self.view else { return }
         
-        view.addSubview(profileButton)
+        view.addSubview(profileImageView)
     }
     
     private func configureConstraints() {
         guard let view = self.view else { return }
-        
-        profileButton.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraints([
-            profileButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
-            profileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                    constant: -10),
+            profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
+            profileImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                    constant: -15),
+            profileImageView.widthAnchor.constraint(equalToConstant: 40),
+            profileImageView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }
