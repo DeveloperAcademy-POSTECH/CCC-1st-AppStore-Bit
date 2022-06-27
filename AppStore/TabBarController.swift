@@ -35,5 +35,6 @@ class TabBarController: UITabBarController {
             .sorted(by: { $0.pageOrderNumber() < $1.pageOrderNumber() })
         let controllers: [UINavigationController] = pages.map({ getNavigationController($0) })
         self.viewControllers = controllers
+        self.selectedIndex = TabBarPage.app.pageOrderNumber()
     }
 }
